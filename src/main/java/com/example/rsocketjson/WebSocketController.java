@@ -27,13 +27,13 @@ public class WebSocketController {
     }
 
     @MessageMapping("ticker.stream")
-    public Flux<String> responseStream(String symbol) {
-        final var filter = StockFilter.builder().matchSymbol( symbol + ".*").build();
+    public Flux<StockTicker> responseStream(String symbol) {
+        final var filter = StockFilter.builder().matchSymbol( symbol ).build();
 
         return this.rSocketRequester
                 .route("stocks")
                 .data(filter)
                 .retrieveFlux(StockTicker.class)
-                .map(ticker -> String.format("%s %s", ticker.getSymbol(), DECIMAL_FORMAT.get().format(ticker.getPrice())));
+                .log();
     }
 }
