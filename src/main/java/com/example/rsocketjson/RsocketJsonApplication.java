@@ -24,6 +24,7 @@ public class RsocketJsonApplication {
 		SpringApplication.run(RsocketJsonApplication.class, args);
 	}
 
+/*
 	@PostConstruct
 	public  void run() {
 		final var latch = new CountDownLatch(1);
@@ -43,5 +44,5 @@ public class RsocketJsonApplication {
 			Thread.currentThread().interrupt();
 		}
 	}
-
+*/
 }
